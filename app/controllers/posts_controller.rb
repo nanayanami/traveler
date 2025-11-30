@@ -1,8 +1,17 @@
 class PostsController < ApplicationController
   def new
-    @post = post.new
+    @post = Post.new
   end
 
   def create
-    post = post.new(post_params)
+    post = Post.new(post_params)
+    post.save
+    redirect_to '/top'
+  end
+
+  private
+  def post_params
+    params.require(:post).permit(:location,:text)
+  end
+
 end
