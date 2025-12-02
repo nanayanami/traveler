@@ -65,3 +65,6 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
 end
+
+gem "refile" , require: "refile/rails" ,github: "refile/refile"
+gem "refile-mini_magick"
