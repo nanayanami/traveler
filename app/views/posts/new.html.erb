@@ -1,7 +1,7 @@
 <div class="cover-new">
   <div class="container d-flex flex-column align-items-center">
     <div class="row mt-5">
-      <h1 class="font-weigth-normal">旅行新規投稿</h1>
+      <h1 class="font-weight-normal">旅行新規投稿</h1>
     </div>
     <div class="row mt-5">
       <%=  form_with model: @post, local:true do |f| %>
@@ -17,19 +17,9 @@
           <label class="form-label">【画像】</label><br>
           <%= f.file_field :image %>
         </div>
-        <%= f.submit '投稿する', class: "btn-success" %>
+        <%= f.submit '投稿する', class: "btn btn-success" %>
       <% end %>
     </div>
   </div>
 </div>
-<h1> 新規旅行投稿</h1>
 
-    <h4>旅行先</h4>
-<%= f.text_field :location %>
-<h4>感想</h4>
-<%= f.text_area :text %>
-<h4>画像</h4>
-<%= f.file_field :image %>
-<p></p>
-<%= f.submit '投稿する' %>
-<% end %>
