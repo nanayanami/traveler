@@ -68,3 +68,8 @@ end
 
 gem "refile" , require: "refile/rails" ,github: "refile/refile"
 gem "refile-mini_magick"
+
+gem 'bootstrap' , '~> 5.3.0'
+gem 'jquery-rails'
+
+gem "sassc-rails"
