@@ -15,7 +15,7 @@ h1{
     font-size: 20px;
 }
 
-.font-group {
+.form-group {
     width: 600px;
 }
 
@@ -23,6 +23,7 @@ h1{
     height: 100%;
     width: 100%;
     background-image: url(index-scaled.jpg);
+    background-color: rgba(255, 255, 255, 0.4);
     background-blend-mode: lighten;
     background-size: 100% 100%;
 }
