@@ -1,9 +1,5 @@
 <h2>Log in</h2>
 
-<% =begin %>
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-<% =end %>
-
 <%= form_with model: @user, url: user_session_path, local: true do |f| %>
   <div class="field">
     <%= f.label :email %><br />
