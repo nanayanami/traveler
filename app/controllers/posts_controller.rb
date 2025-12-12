@@ -4,12 +4,10 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.new(post_params)
-    if @post.save
-      redirect_to @post
-    else
-      render :new, status: :unprocessable_entity
-    end
+    post = Post.new(post_params)
+    post.user_id = current_user.id
+    post.save
+    redirect_to post_path(post.id)
   end
 
   def index
@@ -40,7 +38,7 @@ class PostsController < ApplicationController
 
   private
   def post_params
-    params.require(:post).permit(:location,:text,:image)
+    params.require(:post).permit(:user_id, :location, :text, :image)
   end
 
 end
