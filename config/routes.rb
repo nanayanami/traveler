@@ -6,6 +6,7 @@ Rails.application.routes.draw do
    resources :posts do
     resources :comments, only:[:create, :destroy]
     resource :favorites, only:[:create, :destroy]
+    resources :users, only:[:index, :show, :edit, :update]
    end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
