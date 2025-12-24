@@ -20,6 +20,11 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+    
+    unless ReadCount.where(user_id: current_user.id, post_id: @post.id).exists?
+    ReadCount.create(user_id: current_user.id, post_id: @post.id)
+    end
+    
     @comment = Comment.new
     @comments = @post.comments.page(params[:page]).per(7).reverse_order
   end
