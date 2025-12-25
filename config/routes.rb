@@ -8,12 +8,17 @@ Rails.application.routes.draw do
     resource :relationships, only: [:create, :destroy]
   end
   
-   resources :posts do
+    resources :posts do
     resources :comments, only:[:create, :destroy]
     resource :favorites, only:[:create, :destroy]
     collection do
       get 'confirm'
     end
+    
+    resources :messages, only: [:create]
+    resources :rooms, only: [:create, :index, :show]
+
+
    end
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
