@@ -22,6 +22,24 @@
           <%= link_to 'フォローする',user_relationships_path(@user.id), data: { turbo_method: :post }, class:"btn btn-success" %>
         </p>
       <% end %>
+
+      <div class="d-flex justify-content-center w-100 mb-3">
+        <% if @is_room == true %>
+          <%= link_to room_path(@room_id), class: "btn btn-primary" do %>
+            <i class="fa-regular fa-envelope"></i> チャットを始める
+          <% end %>
+        <% else %>
+          <%= form_with @room do |f| %>
+            <%= fields_for @entry do |e| %>
+              <%= e.hidden_field :user_id, value: @user.id %>
+            <% end %>
+            <%= f.button type: :submit, class: "btn btn-primary" do %>
+              <i class="fa-regular fa-envelope"></i> チャットを始める
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      
     <% end %>
     <div class="d-flex w-100">
         <%= attachment_image_tag @user, :profile_image, size: '100x100', fallback: "no_image.svg", class: "mb-3 profile-img" %>
