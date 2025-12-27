@@ -1,43 +1,46 @@
-<div class="col-md-12 border_right border_left d-flex flex-column justify-content-between vh-100">
-  <div class="d-flex align-items-center py-2">
-    <%= link_to root_path, class: "text-dark" do %>
+<div class="chat-room-wrapper vh-100 d-flex flex-column">
+  
+  <div class="chat-header d-flex align-items-center py-3 px-4 ">
+    <%= link_to root_path, class: "text-dark me-3" do %>
       <i class="fa-solid fa-arrow-left arrow-left"></i>
     <% end %>
-    <div class="profile_top_name">
-      <h3><%= @another_entry.user.name %> さんとのトークルーム</h3>
+    <h3 class="m-0 fs-5 fw-bold text-primary">
+      <%= @another_entry.user.name %> さんとのトークルーム
+    </h3>
+  </div>
+
+  <%# メッセージ表示エリア %>
+  <div class="chat-body p-4 flex-grow-1 overflow-auto">
+    <div class="chat-content-box shadow-sm p-4 mx-auto">   
+      
+      <% @messages.each do |m| %>
+        <% if m.user_id == current_user.id %>
+          <%# 自分の投稿 %>
+          <div class="d-flex justify-content-end mb-4">
+            <div class="my-message-box ">
+              <%= m.message %>
+            </div>
+          </div>
+        <% else %>
+          <%# 相手の投稿（左側・白系） %>
+          <div class="d-flex justify-content-start mb-4 align-items-start">
+            <%= image_tag m.user.icon, class: "chat-avatar-img me-2" %>
+            <div class="other-message-box">
+              <%= m.message %>
+            </div>
+          </div>
+        <% end %>
+      <% end %>
     </div>
   </div>
 
-  <div class="chat-body p-3 flex-grow-1 overflow-auto">
-    <% @messages.each do |m| %>
-      <% if m.user_id == current_user.id %>
-        <div class="d-flex justify-content-end mb-3">
-          <div class="mycomment p-2 rounded d-inline-block">
-            <%= m.message %>
-          </div>
-        </div>
-      <% else %>
-        <div class="d-flex justify-content-start mb-3">
-          <div class="fukidasi d-flex">
-            <div class="faceicon">
-              <%= image_tag m.user.icon, class: "message_icon_img mr-2" %>
-            </div>
-            <div class="chatting p-2 rounded bg-light d-inline-block">
-              <div class="says">
-                <%= m.message %>
-              </div>
-            </div>
-          </div>
-        </div>
-      <% end %>
-    <% end %>
-  </div>
-
-  <div class="chat-form-box p-3">
+  <%# 入力フォームエリア %>
+  <div class="chat-form-box p-3 border-top bg-white">
     <%= form_with model: [@room, @message], local: true do |f| %>
-      <div class="chat-form-group d-flex">
-        <%= f.text_field :message, class: "form-control mr-2 flex-grow-1", placeholder: "メッセージを入力して下さい" %>
-        <%= f.submit "送信する", class: "btn btn-primary message_submit" %>
+      <%# gap-2 を追加して、入力欄とボタンの間に隙間を作ります %>
+      <div class="chat-form-group d-flex gap-2">
+        <%= f.text_field :message, class: "form-control border-0 bg-light rounded-pill px-4", placeholder: "メッセージを入力して下さい" %>
+        <%= f.submit "送信する", class: "btn btn-primary rounded-pill px-4 shadow-sm" %>
       </div>
     <% end %>
   </div>

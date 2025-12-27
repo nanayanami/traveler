@@ -1,0 +1,71 @@
+/* トークルーム全体の背景 */
+.chat-room-wrapper {
+  background-image: url('mypage-scaled.jpg'); /* 画像5枚目のような風景画像 */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  min-height: 100vh;
+}
+
+/* ヘッダーと入力エリアの背景 (背景を透かすために透明化) */
+.chat-header, .chat-form-box {
+  background-color: rgba(255, 255, 255, 0.2); /* ほんの少しだけ白を載せて文字を読みやすく */
+}
+
+/* メッセージ表示エリアの透過背景（読みやすくするため） */
+.chat-body {
+  background-color: transparent !important;
+}
+
+/* 4. メッセージが乗る白いボックス (完全な塗りつぶし・可変サイズ) */
+.chat-content-box {
+  background-color: #ffffff !important; /* ➀ 完全な塗りつぶし */
+  border-radius: 15px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  padding: 30px;
+  margin: 0 auto 20px auto;
+  width: 95%;
+  max-width: 900px;
+  
+  /* ➁ メッセージ量に合わせて伸びる設定 */
+  min-height: 300px; 
+  height: auto; 
+}
+
+/* 自分のメッセージ（右側） */
+.my-message-box {
+  background-color: #d1e7dd; 
+  color: #0f5132;
+  padding: 10px 18px;
+  border-radius: 20px 20px 0 20px; /* 右下だけ角を立てる */
+  max-width: 75%;
+  word-wrap: break-word;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* 相手のメッセージ（左側） */
+.other-message-box {
+  background-color: #f8d7da; /* 薄い赤/ピンク（画像に近い色） */
+  color: #842029;
+  padding: 10px 18px;
+  border-radius: 20px 20px 20px 0; /* 左下だけ角を立てる */
+  max-width: 75%;
+  word-wrap: break-word;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+/* アイコン画像 */
+.chat-avatar-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid white;
+}
+
+/* 入力欄の微調整 */
+.form-control:focus {
+  box-shadow: none;
+  background-color: white;
+}
