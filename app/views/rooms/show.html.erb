@@ -1,11 +1,13 @@
 <div class="chat-room-wrapper vh-100 d-flex flex-column">
   
-  <div class="chat-header d-flex align-items-center py-3 px-4 ">
-    <%= link_to root_path, class: "text-dark me-3" do %>
+  <div class="chat-header d-flex align-items-center py-3 px-4 position-relative">
+    <%= link_to root_path, class: "text-dark position-absolute start-0 ms-4" do %>
       <i class="fa-solid fa-arrow-left arrow-left"></i>
     <% end %>
-    <h3 class="m-0 fs-5 fw-bold text-primary">
-      <%= @another_entry.user.name %> さんとのトークルーム
+
+    <h3 class="m-0 fs-3 fw-bold mx-auto">
+    <%# ➁ 名前を青色、残りを黒色に色分け %>
+    <span class="text-primary"><%= @another_entry.user.name %> さん</span><span class="text-dark">とのトークルーム</span>
     </h3>
   </div>
 
@@ -35,12 +37,13 @@
   </div>
 
   <%# 入力フォームエリア %>
-  <div class="chat-form-box p-3 border-top bg-white">
-    <%= form_with model: [@room, @message], local: true do |f| %>
+  <div class="chat-form-box p-4 w-100 d-flex justify-content-center bg-transparent">
+    <%= form_with model: [@room, @message], local: true,class: "w-100" do |f| %>
       <%# gap-2 を追加して、入力欄とボタンの間に隙間を作ります %>
-      <div class="chat-form-group d-flex gap-2">
-        <%= f.text_field :message, class: "form-control border-0 bg-light rounded-pill px-4", placeholder: "メッセージを入力して下さい" %>
-        <%= f.submit "送信する", class: "btn btn-primary rounded-pill px-4 shadow-sm" %>
+      <div class="chat-form-group d-flex gap-2 mx-auto" style="max-width: 700px;">
+        
+        <%= f.text_field :message, class: "form-control border-0 bg-white shadow-sm ", placeholder: "メッセージを入力して下さい" %>
+        <%= f.submit "送信する", class: "btn btn-primary shadow-sm" %>
       </div>
     <% end %>
   </div>
