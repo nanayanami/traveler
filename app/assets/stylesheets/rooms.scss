@@ -12,6 +12,14 @@
 .chat-header, .chat-form-box {
   background-color: transparent !important;
   border: none !important;
+  /* custom.scss */
+.chat-header, .chat-form-box {
+  background-color: transparent !important;
+  border: none !important;
+  /* ⚠️ 以下の 500px の行を削除してください。これがフォームを小さくしている犯人です */
+  /* max-width: 500px; */ 
+  border-radius: 5px !important;
+}
   
 }
 
@@ -36,16 +44,26 @@
 
 /* 自分のメッセージ（右側） */
 .my-message-box {
-  background-color: #d1e7dd; 
+  background-color: #d1e7dd;
   color: #0f5132;
+  padding: 10px 18px;
   border-radius: 20px 20px 0 20px; /* 右下だけ角を立てる */
+  max-width: 75%;
+  word-wrap: break-word;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 }
+
+
 
 /* 相手のメッセージ（左側） */
 .other-message-box {
   background-color: #f8d7da; /* 薄い赤/ピンク（画像に近い色） */
   color: #842029;
+  padding: 10px 18px;
   border-radius: 20px 20px 20px 0; /* 左下だけ角を立てる */
+  max-width: 75%;
+  word-wrap: break-word; 
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.05);
 }
 
 /* アイコン画像 */
@@ -64,10 +82,11 @@
 }
 
 .chat-form-box {
-  position: relative;
   width: 100%;
   display: flex;
-  justify-content: center; /* これで中のformを中央に寄せます */
+  flex-direction: column; /* エラー文とフォームを縦に並べるため */
+  justify-content: center;
+  align-items: center;
 }
 
 .chat-form-box .form-control {
@@ -76,4 +95,10 @@
 
 .chat-form-box .btn {
   white-space: nowrap; /* ボタン内の文字が改行されないように */
+}
+
+
+/* Railsがエラー時に自動で作る div がレイアウトを壊すのを防ぐ */
+.field_with_errors {
+  display: contents; /* これにより、このタグ自体がレイアウトに影響を与えなくなります */
 }

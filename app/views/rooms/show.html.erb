@@ -1,5 +1,15 @@
 <div class="chat-room-wrapper vh-100 d-flex flex-column">
   
+  <% if @message.errors.any? %>
+    <div class="alert alert-danger">
+      <ul>
+        <% @message.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
   <div class="chat-header d-flex align-items-center py-3 px-4 position-relative">
     <%= link_to root_path, class: "text-dark position-absolute start-0 ms-4" do %>
       <i class="fa-solid fa-arrow-left arrow-left"></i>
@@ -26,7 +36,6 @@
         <% else %>
           <%# 相手の投稿（左側・白系） %>
           <div class="d-flex justify-content-start mb-4 align-items-start">
-            <%= image_tag m.user.icon, class: "chat-avatar-img me-2" %>
             <div class="other-message-box">
               <%= m.message %>
             </div>

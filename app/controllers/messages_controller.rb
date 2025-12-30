@@ -11,7 +11,9 @@ class MessagesController < ApplicationController
     if @message.save
       redirect_to room_path(@room)
     else
-      redirect_back(fallback_location: root_path)
+      @messages = @room.messages.includes(:user) 
+      @another_entry = @room.entries.where.not(user_id: current_user.id).first
+      render "rooms/show",status: :unprocessable_entity
     end
   end
 
