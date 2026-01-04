@@ -1,5 +1,10 @@
 ja:
+  errors:
+    format: "%{attribute}%{message}"
+
   activerecord:
+    models:
+      message: メッセージ
     attributes:
       message:
-        message: "メッセージ"
+        message: メッセージ
